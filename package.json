@@ -13,6 +13,7 @@
   "dependencies": {
     "@nuxt/image": "^1.7.0",
     "@supabase/supabase-js": "^2.45.0",
+    "lucide-vue-next": "^1.0.0",
     "nuxt": "^3.13.0"
   },
   "devDependencies": {
