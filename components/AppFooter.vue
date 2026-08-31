@@ -3,15 +3,14 @@
     <div class="container-page py-12">
       <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div class="flex items-center gap-2">
-            <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-700 text-white">
-              <ShieldIcon class="h-6 w-6" />
-            </div>
-            <div class="leading-tight">
-              <span class="block text-lg font-extrabold text-white">Lexshield</span>
-              <span class="block text-[10px] font-medium uppercase tracking-wider text-primary-300">Properties Limited</span>
-            </div>
-          </div>
+          <NuxtLink to="/" class="inline-block rounded-lg bg-white p-2" aria-label="Lexshield Properties Limited home">
+            <img
+              src="/lexshield-logo.jpg"
+              alt="Lexshield Properties Limited"
+              width="52"
+              class="h-14 w-auto object-contain"
+            />
+          </NuxtLink>
           <p class="mt-4 text-sm leading-relaxed text-neutral-300">
             Verified properties in strategic locations. Smarter real estate investments across Lagos, Ogun and Oyo State.
           </p>
@@ -86,7 +85,6 @@
 
 <script setup lang="ts">
 import {
-  ShieldCheck as ShieldIcon,
   Phone as PhoneIcon,
   Mail as MailIcon,
   MapPin as MapPinIcon,

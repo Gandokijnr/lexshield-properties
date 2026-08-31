@@ -18,8 +18,8 @@ export default defineNuxtConfig({
       companyVideoUrl: process.env.COMPANY_VIDEO_URL || '',
       supabaseUrl: process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '',
       supabaseAnonKey: process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || '',
-      whatsappNumber: process.env.WHATSAPP_NUMBER || '2348012345678',
-      phoneNumber: process.env.PHONE_NUMBER || '+2348012345678',
+      whatsappNumber: process.env.WHATSAPP_NUMBER || '+2348094471000',
+      phoneNumber: process.env.PHONE_NUMBER || '+2349035559150',
       email: process.env.CONTACT_EMAIL || 'info@lexshieldproperties.com',
       gaId: process.env.GA_ID || '',
     },
@@ -39,7 +39,8 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#ea580c' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/jpeg', href: '/lexshield-logo.jpg' },
+        { rel: 'apple-touch-icon', href: '/lexshield-logo.jpg' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         {

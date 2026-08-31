@@ -17,7 +17,7 @@
         </div>
         <div class="flex items-center gap-3">
           <span class="hidden sm:inline">Mon–Sat 8am–6pm</span>
-          <a :href="whatsappLink" target="_blank" rel="noopener" class="flex items-center gap-1 font-semibold text-[#25D366]" @click="trackWhatsApp">
+          <a :href="whatsappLink" target="_blank" rel="noopener" class="flex items-center gap-1 font-semibold text-[#FF6B1A]" @click="trackWhatsApp">
             <WhatsAppIcon class="h-3.5 w-3.5" />
             <span>WhatsApp</span>
           </a>
@@ -26,14 +26,13 @@
     </div>
 
     <div class="container-page flex items-center justify-between py-3">
-      <NuxtLink to="/" class="flex items-center gap-2">
-        <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-primary-700 text-white">
-          <ShieldIcon class="h-6 w-6" />
-        </div>
-        <div class="leading-tight">
-          <span class="block text-lg font-extrabold text-primary-800">Lexshield</span>
-          <span class="block text-[10px] font-medium uppercase tracking-wider text-neutral-500">Properties Limited</span>
-        </div>
+      <NuxtLink to="/" class="shrink-0" aria-label="Lexshield Properties Limited home">
+        <img
+          src="/lexshield-logo.jpg"
+          alt="Lexshield Properties Limited"
+          width="52"
+          class="h-9 w-auto object-contain sm:h-10"
+        />
       </NuxtLink>
 
       <nav class="hidden items-center gap-1 lg:flex">
@@ -84,7 +83,6 @@ import {
   Mail as MailIcon,
   Menu as MenuIcon,
   X as CloseIcon,
-  ShieldCheck as ShieldIcon,
   MessageCircle as WhatsAppIcon,
 } from 'lucide-vue-next'
 
