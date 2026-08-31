@@ -1,0 +1,1 @@
+export default defineNuxtRouteMiddleware(async(to)=>{if(import.meta.server||to.path==='/admin/login')return;const{data}=await useSupabase().auth.getSession();if(!data.session)return navigateTo(`/admin/login?redirect=${encodeURIComponent(to.fullPath)}`)})

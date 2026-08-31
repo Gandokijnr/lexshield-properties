@@ -1,0 +1,21 @@
+{
+  "name": "lexshield-properties",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "admin:create": "node scripts/create-admin.mjs",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/image": "^1.7.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "nuxt": "^3.13.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.0"
+  }
+}
