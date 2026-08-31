@@ -11,6 +11,8 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   runtimeConfig: {
+    supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+    adminSetupToken: process.env.ADMIN_SETUP_TOKEN || '',
     public: {
       siteUrl: process.env.SITE_URL || 'https://lexshieldproperties.com',
       companyVideoUrl: process.env.COMPANY_VIDEO_URL || '',
