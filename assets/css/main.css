@@ -113,6 +113,6 @@
   }
 
   .prose-content a {
-    @apply text-primary-700 underline hover:text-primary-800;
+    @apply text-white hover:text-white;
   }
 }
