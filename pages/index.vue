@@ -15,7 +15,7 @@
           :fetchpriority="index === 0 ? 'high' : 'auto'"
         />
       </div>
-      <div class="absolute inset-0 -z-10 bg-gradient-to-r from-primary-950/95 via-primary-950/75 to-primary-900/35" />
+      <div class="absolute inset-0 -z-10 bg-gradient-to-r from-black via-primary-950/75 to-white-900/35" />
 
       <div class="container-page flex min-h-[560px] items-center py-20 sm:py-28">
         <div class="max-w-3xl">
@@ -43,18 +43,18 @@
     </section>
 
     <section class="border-b border-neutral-200 bg-white" aria-label="Lexshield at a glance">
-      <div class="container-page grid grid-cols-1 divide-y divide-neutral-200 py-6 text-center sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:py-8">
-        <div class="px-4 py-5 sm:py-2">
-          <strong class="block text-3xl font-extrabold text-primary-800 sm:text-4xl">1,000+</strong>
-          <span class="mt-1 block text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">Allocations</span>
+      <div class="container-page flex divide-x divide-neutral-200 py-5 text-center sm:py-8">
+        <div class="min-w-0 flex-1 px-1 py-2 sm:px-4">
+          <strong class="block text-xl font-extrabold text-primary-800 sm:text-4xl">1,000+</strong>
+          <span class="mt-1 block text-[9px] font-semibold uppercase leading-tight tracking-wide text-neutral-500 sm:text-xs sm:tracking-[0.16em]">Allocations</span>
         </div>
-        <div class="px-4 py-5 sm:py-2">
-          <strong class="block text-3xl font-extrabold text-primary-800 sm:text-4xl">600+</strong>
-          <span class="mt-1 block text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">Customers</span>
+        <div class="min-w-0 flex-1 px-1 py-2 sm:px-4">
+          <strong class="block text-xl font-extrabold text-primary-800 sm:text-4xl">600+</strong>
+          <span class="mt-1 block text-[9px] font-semibold uppercase leading-tight tracking-wide text-neutral-500 sm:text-xs sm:tracking-[0.16em]">Customers</span>
         </div>
-        <div class="px-4 py-5 sm:py-2">
-          <strong class="block text-3xl font-extrabold text-primary-800 sm:text-4xl">95%</strong>
-          <span class="mt-1 block text-xs font-semibold uppercase tracking-[0.16em] text-neutral-500">Customer Satisfaction Rate</span>
+        <div class="min-w-0 flex-1 px-1 py-2 sm:px-4">
+          <strong class="block text-xl font-extrabold text-primary-800 sm:text-4xl">95%</strong>
+          <span class="mt-1 block text-[9px] font-semibold uppercase leading-tight tracking-wide text-neutral-500 sm:text-xs sm:tracking-[0.16em]">Customer Satisfaction Rate</span>
         </div>
       </div>
     </section>
