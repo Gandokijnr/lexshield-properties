@@ -55,6 +55,7 @@
           <h3 class="mb-4 text-sm font-bold uppercase tracking-wider text-primary-300">Company</h3>
           <ul class="space-y-2 text-sm">
             <li><NuxtLink to="/about" class="text-neutral-300 hover:text-white">About Lexshield</NuxtLink></li>
+            <li><NuxtLink to="/testimonials" class="text-neutral-300 hover:text-white">Testimonials</NuxtLink></li>
             <li><NuxtLink to="/contact" class="text-neutral-300 hover:text-white">Contact</NuxtLink></li>
             <li><NuxtLink to="/privacy" class="text-neutral-300 hover:text-white">Privacy Policy</NuxtLink></li>
             <li><NuxtLink to="/terms" class="text-neutral-300 hover:text-white">Terms</NuxtLink></li>

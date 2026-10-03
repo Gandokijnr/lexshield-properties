@@ -39,6 +39,7 @@
         <NavDropdown label="Properties" :items="propertyItems" />
         <NavDropdown label="Locations" :items="locationItems" />
         <NuxtLink to="/about" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">About</NuxtLink>
+        <NuxtLink to="/testimonials" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Testimonials</NuxtLink>
         <NuxtLink to="/blog" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Property Guides</NuxtLink>
         <NuxtLink to="/book-inspection" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Book Inspection</NuxtLink>
         <NuxtLink to="/contact" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Contact</NuxtLink>
@@ -64,6 +65,7 @@
           <NuxtLink to="/properties/ibeju-lekki" class="rounded-lg px-3 py-2.5 pl-6 text-sm text-neutral-600 hover:bg-neutral-100" @click="mobileOpen = false">Ibeju-Lekki</NuxtLink>
           <NuxtLink to="/properties/apete-ibadan" class="rounded-lg px-3 py-2.5 pl-6 text-sm text-neutral-600 hover:bg-neutral-100" @click="mobileOpen = false">Apete, Ibadan</NuxtLink>
           <NuxtLink to="/about" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">About</NuxtLink>
+          <NuxtLink to="/testimonials" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Testimonials</NuxtLink>
           <NuxtLink to="/blog" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Property Guides</NuxtLink>
           <NuxtLink to="/book-inspection" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Book Inspection</NuxtLink>
           <NuxtLink to="/contact" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Contact</NuxtLink>
