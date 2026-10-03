@@ -1,4 +1,320 @@
-<template><div class="container-page py-10"><NuxtLink to="/admin/properties" class="font-semibold text-primary-700">← Properties</NuxtLink><p v-if="pending" class="mt-8">Loading property…</p><p v-else-if="loadError" class="mt-8 rounded-lg bg-error-50 p-4 text-error-800">{{loadError.message}}</p><template v-else-if="property"><div class="mt-3 flex flex-wrap items-center justify-between gap-3"><h1 class="text-3xl">Edit {{property.name}}</h1><NuxtLink :to="`/property/${property.slug}`" target="_blank" class="font-semibold text-primary-700">View public page ↗</NuxtLink></div><form class="card mt-7 space-y-6 p-6" @submit.prevent="save"><div class="grid gap-5 md:grid-cols-2"><div><label class="label">Estate name *</label><input v-model.trim="form.name" class="input" required/></div><div><label class="label">Slug *</label><input v-model.trim="form.slug" class="input" required/></div><div><label class="label">Location *</label><select v-model="form.location_id" class="input" required @change="syncLocation"><option value="">Choose location</option><option v-for="location in locations" :key="location.id" :value="location.id">{{location.name}}</option></select></div><div><label class="label">Location detail *</label><input v-model.trim="form.location_name" class="input" required/></div><div><label class="label">City *</label><input v-model.trim="form.city" class="input" required/></div><div><label class="label">State *</label><input v-model.trim="form.state" class="input" required/></div><div><label class="label">Starting price (NGN)</label><input v-model.number="form.price_from" class="input" type="number" min="0"/></div><div><label class="label">Pricing model</label><select v-model="form.pricing_model" class="input"><option value="all_inclusive">All inclusive</option><option value="plus_statutory_fees">Plus statutory fees</option><option value="contact_for_price">Contact for price</option></select></div><div><label class="label">Sales status</label><select v-model="form.sales_status" class="input"><option value="now_selling">Now selling</option><option value="sold_out">Sold out</option><option value="coming_soon">Coming soon</option></select></div><div><label class="label">Sort order</label><input v-model.number="form.sort_order" class="input" type="number" min="0"/></div><div class="md:col-span-2"><label class="label">Replace primary image</label><input class="input" type="file" accept="image/jpeg,image/png,image/webp,image/avif" @change="chooseFile"/><img v-if="property.featured_image" :src="property.featured_image" :alt="property.name" class="mt-3 h-36 rounded-lg object-cover"/></div></div><div><label class="label">Description</label><textarea v-model.trim="form.description" class="input min-h-32"/></div><div><label class="label">Overview</label><textarea v-model.trim="form.overview" class="input min-h-28"/></div><div class="grid gap-5 md:grid-cols-2"><div><label class="label">SEO title</label><input v-model.trim="form.meta_title" class="input" maxlength="70"/></div><div><label class="label">Meta description</label><textarea v-model.trim="form.meta_description" class="input" maxlength="170"/></div></div><div class="flex flex-wrap gap-6"><label class="flex items-center gap-2"><input v-model="form.featured" type="checkbox"/> Featured</label><label class="flex items-center gap-2"><input v-model="form.published" type="checkbox"/> Published</label><label class="flex items-center gap-2"><input v-model="form.is_active" type="checkbox"/> Active</label></div><p v-if="message" class="rounded-lg bg-success-50 p-3 text-success-800">{{message}}</p><p v-if="saveError" class="rounded-lg bg-error-50 p-3 text-error-800">{{saveError}}</p><button class="btn-primary" :disabled="busy">{{busy?'Saving changes…':'Save Changes'}}</button></form></template></div></template>
+<template>
+  <div class="container-page py-10">
+    <NuxtLink to="/admin/properties" class="font-semibold text-primary-700"
+      >← Properties</NuxtLink
+    >
+    <p v-if="pending" class="mt-8">Loading property…</p>
+    <p
+      v-else-if="loadError"
+      class="mt-8 rounded-lg bg-error-50 p-4 text-error-800"
+    >
+      {{ loadError.message }}
+    </p>
+    <template v-else-if="property"
+      ><div class="mt-3 flex flex-wrap items-center justify-between gap-3">
+        <h1 class="text-3xl">Edit {{ property.name }}</h1>
+        <NuxtLink
+          :to="`/property/${property.slug}`"
+          target="_blank"
+          class="font-semibold text-primary-700"
+          >View public page ↗</NuxtLink
+        >
+      </div>
+      <form class="card mt-7 space-y-6 p-6" @submit.prevent="save">
+        <div class="grid gap-5 md:grid-cols-2">
+          <div>
+            <label class="label">Estate name *</label
+            ><input v-model.trim="form.name" class="input" required />
+          </div>
+          <div>
+            <label class="label">Slug *</label
+            ><input v-model.trim="form.slug" class="input" required />
+          </div>
+          <div>
+            <label class="label">Location *</label
+            ><select
+              v-model="form.location_id"
+              class="input"
+              required
+              @change="syncLocation"
+            >
+              <option value="">Choose location</option>
+              <option
+                v-for="location in locations"
+                :key="location.id"
+                :value="location.id"
+              >
+                {{ location.name }}
+              </option>
+            </select>
+          </div>
+          <div>
+            <label class="label">Location detail *</label
+            ><input v-model.trim="form.location_name" class="input" required />
+          </div>
+          <div>
+            <label class="label">City *</label
+            ><input v-model.trim="form.city" class="input" required />
+          </div>
+          <div>
+            <label class="label">State *</label
+            ><input v-model.trim="form.state" class="input" required />
+          </div>
+          <div>
+            <label class="label">Starting price (NGN)</label
+            ><input
+              v-model.number="form.price_from"
+              class="input"
+              type="number"
+              min="0"
+            />
+          </div>
+          <div>
+            <label class="label">Pricing model</label
+            ><select v-model="form.pricing_model" class="input">
+              <option value="all_inclusive">All inclusive</option>
+              <option value="plus_statutory_fees">Plus statutory fees</option>
+              <option value="contact_for_price">Contact for price</option>
+            </select>
+          </div>
+          <div class="md:col-span-2">
+            <label class="label">Estate video URLs</label>
+            <textarea
+              v-model="videosText"
+              class="input min-h-24"
+              placeholder="Add one YouTube, Vimeo, or direct video URL per line"
+            />
+            <p class="mt-1 text-sm text-neutral-500">
+              These videos appear on this estate’s public page.
+            </p>
+          </div>
+          <div>
+            <label class="label">Sales status</label
+            ><select v-model="form.sales_status" class="input">
+              <option value="now_selling">Now selling</option>
+              <option value="sold_out">Sold out</option>
+              <option value="coming_soon">Coming soon</option>
+            </select>
+          </div>
+          <div>
+            <label class="label">Sort order</label
+            ><input
+              v-model.number="form.sort_order"
+              class="input"
+              type="number"
+              min="0"
+            />
+          </div>
+          <div class="md:col-span-2">
+            <label class="label">Replace primary image</label
+            ><input
+              class="input"
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/avif"
+              @change="chooseFile"
+            /><img
+              v-if="property.featured_image"
+              :src="property.featured_image"
+              :alt="property.name"
+              class="mt-3 h-36 rounded-lg object-cover"
+            />
+          </div>
+        </div>
+        <div>
+          <label class="label">Description</label
+          ><textarea v-model.trim="form.description" class="input min-h-32" />
+        </div>
+        <div>
+          <label class="label">Overview</label
+          ><textarea v-model.trim="form.overview" class="input min-h-28" />
+        </div>
+        <div class="grid gap-5 md:grid-cols-2">
+          <div>
+            <label class="label">SEO title</label
+            ><input
+              v-model.trim="form.meta_title"
+              class="input"
+              maxlength="70"
+            />
+          </div>
+          <div>
+            <label class="label">Meta description</label
+            ><textarea
+              v-model.trim="form.meta_description"
+              class="input"
+              maxlength="170"
+            />
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-6">
+          <label class="flex items-center gap-2"
+            ><input v-model="form.featured" type="checkbox" /> Featured</label
+          ><label class="flex items-center gap-2"
+            ><input v-model="form.published" type="checkbox" /> Published</label
+          ><label class="flex items-center gap-2"
+            ><input v-model="form.is_active" type="checkbox" /> Active</label
+          >
+        </div>
+        <p v-if="message" class="rounded-lg bg-success-50 p-3 text-success-800">
+          {{ message }}
+        </p>
+        <p v-if="saveError" class="rounded-lg bg-error-50 p-3 text-error-800">
+          {{ saveError }}
+        </p>
+        <button class="btn-primary" :disabled="busy">
+          {{ busy ? "Saving changes…" : "Save Changes" }}
+        </button>
+      </form></template
+    >
+  </div>
+</template>
 <script setup lang="ts">
-definePageMeta({layout:'admin',middleware:'admin-auth'});const route=useRoute(),db=useSupabase(),busy=ref(false),message=ref(''),saveError=ref(''),file=ref<File|null>(null);const{data:locations}=useAsyncData('admin-locations',async()=>{const{data,error}=await db.from('locations').select('*').order('sort_order');if(error)throw error;return data||[]});const{data:property,pending,error:loadError}=useAsyncData(`admin-property-${route.params.id}`,async()=>{const{data,error}=await db.from('properties').select('*').eq('id',String(route.params.id)).single();if(error)throw error;return data});const form=reactive({name:'',slug:'',location_id:'',location_name:'',city:'',state:'',price_from:null as number|null,pricing_model:'contact_for_price',sales_status:'now_selling',sort_order:0,description:'',overview:'',meta_title:'',meta_description:'',featured:false,published:false,is_active:false});watch(property,v=>{if(v)Object.assign(form,{name:v.name,slug:v.slug,location_id:v.location_id||'',location_name:v.location_name,city:v.city||'',state:v.state,price_from:v.price_from,pricing_model:v.pricing_model||'contact_for_price',sales_status:v.sales_status||'now_selling',sort_order:v.sort_order||0,description:v.description||'',overview:v.overview||'',meta_title:v.meta_title||'',meta_description:v.meta_description||'',featured:v.featured,published:v.published,is_active:v.is_active})},{immediate:true});function syncLocation(){const l=locations.value?.find(x=>x.id===form.location_id);if(l)form.state=l.state}function chooseFile(e:Event){file.value=(e.target as HTMLInputElement).files?.[0]||null}async function save(){busy.value=true;message.value='';saveError.value='';try{const updates={...form,price_inclusive:form.pricing_model==='all_inclusive',price_display:form.price_from?`From ₦${Number((form.price_from/1e6).toFixed(2))}M`:null,last_price_verified_at:new Date().toISOString()};const{error}=await db.from('properties').update(updates).eq('id',String(route.params.id));if(error)throw error;if(file.value){const ext=file.value.name.split('.').pop()||'jpg',path=`${route.params.id}/${crypto.randomUUID()}.${ext}`;const{error:u}=await db.storage.from('property-media').upload(path,file.value);if(u)throw u;const{data:image}=db.storage.from('property-media').getPublicUrl(path);await db.from('property_images').update({is_primary:false}).eq('property_id',String(route.params.id));const{error:i}=await db.from('property_images').insert({property_id:route.params.id,image_url:image.publicUrl,alt_text:`${form.name} property`,is_primary:true});if(i)throw i;const{error:f}=await db.from('properties').update({featured_image:image.publicUrl}).eq('id',String(route.params.id));if(f)throw f;property.value.featured_image=image.publicUrl;file.value=null}Object.assign(property.value,updates);message.value='Property updated successfully.'}catch(e:any){saveError.value=e.message||'Could not update the property.'}finally{busy.value=false}}useSeoMeta({title:'Edit Property | Lexshield Admin',robots:'noindex,nofollow'})
+definePageMeta({ layout: "admin", middleware: "admin-auth" });
+const route = useRoute(),
+  db = useSupabase(),
+  busy = ref(false),
+  message = ref(""),
+  saveError = ref(""),
+  file = ref<File | null>(null),
+  videosText = ref("");
+const { data: locations } = useAsyncData("admin-locations", async () => {
+  const { data, error } = await db
+    .from("locations")
+    .select("*")
+    .order("sort_order");
+  if (error) throw error;
+  return data || [];
+});
+const {
+  data: property,
+  pending,
+  error: loadError,
+} = useAsyncData(`admin-property-${route.params.id}`, async () => {
+  const { data, error } = await db
+    .from("properties")
+    .select("*")
+    .eq("id", String(route.params.id))
+    .single();
+  if (error) throw error;
+  return data;
+});
+const form = reactive({
+  name: "",
+  slug: "",
+  location_id: "",
+  location_name: "",
+  city: "",
+  state: "",
+  price_from: null as number | null,
+  pricing_model: "contact_for_price",
+  sales_status: "now_selling",
+  sort_order: 0,
+  description: "",
+  overview: "",
+  meta_title: "",
+  meta_description: "",
+  featured: false,
+  published: false,
+  is_active: false,
+});
+watch(
+  property,
+  (v) => {
+    if (v) {
+      videosText.value = Array.isArray(v.videos) ? v.videos.join("\n") : "";
+      Object.assign(form, {
+        name: v.name,
+        slug: v.slug,
+        location_id: v.location_id || "",
+        location_name: v.location_name,
+        city: v.city || "",
+        state: v.state,
+        price_from: v.price_from,
+        pricing_model: v.pricing_model || "contact_for_price",
+        sales_status: v.sales_status || "now_selling",
+        sort_order: v.sort_order || 0,
+        description: v.description || "",
+        overview: v.overview || "",
+        meta_title: v.meta_title || "",
+        meta_description: v.meta_description || "",
+        featured: v.featured,
+        published: v.published,
+        is_active: v.is_active,
+      });
+      }
+  },
+  { immediate: true },
+);
+function syncLocation() {
+  const l = locations.value?.find((x) => x.id === form.location_id);
+  if (l) form.state = l.state;
+}
+function chooseFile(e: Event) {
+  file.value = (e.target as HTMLInputElement).files?.[0] || null;
+}
+async function save() {
+  busy.value = true;
+  message.value = "";
+  saveError.value = "";
+  try {
+    const updates = {
+      ...form,
+      price_inclusive: form.pricing_model === "all_inclusive",
+      price_display: form.price_from
+        ? `From ₦${Number((form.price_from / 1e6).toFixed(2))}M`
+        : null,
+      videos: videosText.value
+        .split(/\r?\n/)
+        .map((url) => url.trim())
+        .filter(Boolean),
+      last_price_verified_at: new Date().toISOString(),
+    };
+    const { error } = await db
+      .from("properties")
+      .update(updates)
+      .eq("id", String(route.params.id));
+    if (error) throw error;
+    if (file.value) {
+      const ext = file.value.name.split(".").pop() || "jpg",
+        path = `${route.params.id}/${crypto.randomUUID()}.${ext}`;
+      const { error: u } = await db.storage
+        .from("property-media")
+        .upload(path, file.value);
+      if (u) throw u;
+      const { data: image } = db.storage
+        .from("property-media")
+        .getPublicUrl(path);
+      await db
+        .from("property_images")
+        .update({ is_primary: false })
+        .eq("property_id", String(route.params.id));
+      const { error: i } = await db
+        .from("property_images")
+        .insert({
+          property_id: route.params.id,
+          image_url: image.publicUrl,
+          alt_text: `${form.name} property`,
+          is_primary: true,
+        });
+      if (i) throw i;
+      const { error: f } = await db
+        .from("properties")
+        .update({ featured_image: image.publicUrl })
+        .eq("id", String(route.params.id));
+      if (f) throw f;
+      property.value.featured_image = image.publicUrl;
+      file.value = null;
+    }
+    Object.assign(property.value, updates);
+    message.value = "Property updated successfully.";
+  } catch (e: any) {
+    saveError.value = e.message || "Could not update the property.";
+  } finally {
+    busy.value = false;
+  }
+}
+useSeoMeta({
+  title: "Edit Property | Lexshield Admin",
+  robots: "noindex,nofollow",
+});
 </script>
