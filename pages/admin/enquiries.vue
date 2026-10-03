@@ -4,16 +4,27 @@
     <div class="mt-2 flex flex-wrap items-center justify-between gap-4">
       <h1 class="text-3xl">Client Enquiries</h1>
       <div class="flex flex-wrap gap-3">
-        <button class="btn-primary" :disabled="loading || !filtered.length" @click="exportClients">Export CSV ({{ filtered.length }})</button>
+        <button class="btn-primary" :disabled="busy || !filtered.length" @click="exportClients(filtered)">Export Filtered CSV ({{ filtered.length }})</button>
         <button class="btn-outline" :disabled="loading || Boolean(saving) || Boolean(deleting)" @click="load">{{ loading ? 'Refreshing…' : 'Refresh Enquiries' }}</button>
       </div>
     </div>
     <p class="mt-3 text-neutral-600">View details submitted through estate and contact forms, and manage sales follow-up.</p>
-    <p class="mt-2 text-sm text-neutral-500">CSV export includes the enquiries matching your current filters. Clear the filters to export all clients.</p>
+    <p class="mt-2 text-sm text-neutral-500">Select clients to export or delete together. Changing filters clears the selection. Clear filters to view all clients.</p>
     <div class="card mt-7 grid gap-4 p-5 sm:grid-cols-3">
       <div><label for="enquiry-search" class="label">Search clients</label><input id="enquiry-search" v-model.trim="search" class="input" placeholder="Name, phone, email or message" /></div>
       <div><label for="enquiry-estate" class="label">Estate</label><select id="enquiry-estate" v-model="estate" class="input"><option value="">All estates</option><option v-for="name in estates" :key="name" :value="name">{{ name }}</option></select></div>
       <div><label for="enquiry-status" class="label">Follow-up status</label><select id="enquiry-status" v-model="status" class="input"><option value="">All statuses</option><option v-for="value in statuses" :key="value" :value="value">{{ statusLabel(value) }}</option></select></div>
+    </div>
+    <div class="card mt-5 flex flex-wrap items-center justify-between gap-4 p-5">
+      <div class="flex flex-wrap items-center gap-4">
+        <label class="flex items-center gap-2 text-sm font-semibold"><input type="checkbox" class="h-4 w-4" :checked="allSelected" :indeterminate="selectedClients.length > 0 && !allSelected" :disabled="busy || !filtered.length" @change="toggleAll(($event.target as HTMLInputElement).checked)" />Select all filtered clients</label>
+        <span role="status" class="text-sm text-neutral-600">{{ selectedClients.length }} selected</span>
+        <button v-if="selectedClients.length" class="text-sm font-semibold text-primary-700" :disabled="busy" @click="selectedIds = []">Clear selection</button>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <button class="btn-primary" :disabled="busy || !selectedClients.length" @click="exportClients(selectedClients)">Export Selected CSV</button>
+        <button class="btn-outline border-error-300 text-error-700 hover:border-error-500 hover:text-error-800" :disabled="busy || !selectedClients.length" @click="deleteSelected">{{ deleting === 'bulk' ? 'Deleting…' : 'Delete Selected' }}</button>
+      </div>
     </div>
     <p v-if="errorMessage" role="alert" class="mt-5 rounded-lg bg-error-50 p-4 text-error-800">{{ errorMessage }}</p>
     <p v-if="successMessage" role="status" class="mt-5 rounded-lg bg-success-50 p-4 text-success-800">{{ successMessage }}</p>
@@ -21,7 +32,8 @@
     <template v-else>
       <p class="mt-6 text-sm text-neutral-600">{{ filtered.length }} {{ filtered.length === 1 ? 'enquiry' : 'enquiries' }}</p>
       <div class="mt-4 space-y-5">
-        <article v-for="lead in filtered" :key="lead.id" class="card p-6">
+        <article v-for="lead in filtered" :key="lead.id" class="card p-6" :class="selectedIds.includes(lead.id) ? 'ring-2 ring-primary-500' : ''">
+          <label class="mb-4 flex w-fit items-center gap-2 text-sm font-semibold text-primary-700"><input v-model="selectedIds" type="checkbox" :value="lead.id" class="h-4 w-4" :disabled="busy" />Select {{ lead.name }}</label>
           <div class="flex flex-wrap items-start justify-between gap-4">
             <div><h2 class="text-xl text-neutral-900">{{ lead.name }}</h2><p class="mt-1 text-sm text-neutral-500">{{ dateLabel(lead.created_at) }} · {{ lead.source === 'property_video_enquiry' ? 'Estate enquiry form' : lead.source === 'contact_page' ? 'Contact form' : lead.source }}</p></div>
             <div><label :for="`status-${lead.id}`" class="label">Follow-up status</label><select :id="`status-${lead.id}`" :value="lead.status" class="input" :disabled="Boolean(saving) || Boolean(deleting) || loading" @change="updateStatus(lead, ($event.target as HTMLSelectElement).value)"><option v-if="!statuses.includes(lead.status)" :value="lead.status">{{ statusLabel(lead.status) }}</option><option v-for="value in statuses" :key="value" :value="value">{{ statusLabel(value) }}</option></select></div>
@@ -51,6 +63,8 @@ const errorMessage = ref('')
 const saving = ref('')
 const deleting = ref('')
 const successMessage = ref('')
+const selectedIds = ref<string[]>([])
+const busy = computed(() => loading.value || Boolean(saving.value) || Boolean(deleting.value))
 const search = ref('')
 const estate = ref('')
 const status = ref('')
@@ -61,6 +75,16 @@ const filtered = computed(() => leads.value.filter(lead =>
   (!status.value || lead.status === status.value) &&
   (!search.value || [lead.name, lead.phone, lead.email, lead.message, lead.property_name].some(value => value?.toLowerCase().includes(search.value.toLowerCase())))
 ))
+const selectedClients = computed(() => filtered.value.filter(lead => selectedIds.value.includes(lead.id)))
+const allSelected = computed(() => filtered.value.length > 0 && selectedClients.value.length === filtered.value.length)
+function toggleAll(checked: boolean) {
+  if (!busy.value) selectedIds.value = checked ? filtered.value.map(lead => lead.id) : []
+}
+watch([search, estate, status], () => { selectedIds.value = [] }, { flush: 'sync' })
+watch(leads, rows => {
+  const available = new Set(rows.map(lead => lead.id))
+  selectedIds.value = selectedIds.value.filter(id => available.has(id))
+})
 function statusLabel(value: string) { return value.charAt(0).toUpperCase() + value.slice(1).replace(/_/g, ' ') }
 function dateLabel(value: string) { return new Intl.DateTimeFormat('en-NG', { dateStyle: 'medium', timeStyle: 'short', timeZone: 'Africa/Lagos' }).format(new Date(value)) }
 async function load() {
@@ -81,7 +105,7 @@ async function load() {
   finally { loading.value = false }
 }
 async function updateStatus(lead: Lead, value: string) {
-  if (saving.value || !statuses.includes(value)) return
+  if (busy.value || !statuses.includes(value)) return
   saving.value = lead.id
   errorMessage.value = ''
   try {
@@ -107,9 +131,36 @@ async function deleteClient(lead: Lead) {
   } catch { errorMessage.value = 'Could not delete this enquiry. Please refresh and try again.' }
   finally { deleting.value = '' }
 }
-function exportClients() {
-  if (loading.value || !filtered.value.length) return
-  const blob = new Blob([clientCsv(filtered.value)], { type: 'text/csv;charset=utf-8;' })
+async function deleteSelected() {
+  if (busy.value || !selectedClients.value.length) return
+  const ids = selectedClients.value.map(lead => lead.id)
+  if (!window.confirm(`Permanently delete ${ids.length} selected client ${ids.length === 1 ? 'enquiry' : 'enquiries'}? This cannot be undone.`)) return
+  deleting.value = 'bulk'
+  errorMessage.value = ''
+  successMessage.value = ''
+  let removed = 0
+  try {
+    // Keep requests small when exporting and selecting large client lists.
+    for (let offset = 0; offset < ids.length; offset += 100) {
+      const batch = ids.slice(offset, offset + 100)
+      const { data, error } = await useSupabase().from('leads').delete().in('id', batch).select('id')
+      if (error) throw error
+      const deleted = new Set((data || []).map(row => row.id as string))
+      leads.value = leads.value.filter(lead => !deleted.has(lead.id))
+      selectedIds.value = selectedIds.value.filter(id => !deleted.has(id))
+      removed += deleted.size
+      if (deleted.size !== batch.length) throw new Error('Some enquiries were not deleted')
+    }
+    successMessage.value = `${removed} client ${removed === 1 ? 'enquiry' : 'enquiries'} deleted.`
+  } catch {
+    errorMessage.value = removed
+      ? `${removed} enquiries were deleted. The remaining clients could not be deleted and remain selected. Please refresh and try again.`
+      : 'Could not delete the selected enquiries. Please refresh and try again.'
+  } finally { deleting.value = '' }
+}
+function exportClients(clients: Lead[]) {
+  if (busy.value || !clients.length) return
+  const blob = new Blob([clientCsv(clients)], { type: 'text/csv;charset=utf-8;' })
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url
