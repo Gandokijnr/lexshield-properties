@@ -15,7 +15,7 @@ export default defineNuxtConfig({
     adminSetupToken: process.env.ADMIN_SETUP_TOKEN || '',
     public: {
       siteUrl: process.env.SITE_URL || 'https://lexshieldproperties.com',
-      companyVideoUrl: process.env.COMPANY_VIDEO_URL || '',
+      companyVideoUrl: process.env.COMPANY_VIDEO_URL || 'https://www.youtube.com/embed/W139MrUUMXU',
       supabaseUrl: process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '',
       supabaseAnonKey: process.env.SUPABASE_ANON_KEY || process.env.VITE_SUPABASE_ANON_KEY || '',
       whatsappNumber: process.env.WHATSAPP_NUMBER || '+2348094471000',

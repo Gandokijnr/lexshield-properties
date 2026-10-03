@@ -81,7 +81,7 @@
               Lexshield Properties is a trusted real estate company in Nigeria, specialising in landed properties and investment opportunities. Whether you are buying for the first time or investing, we make the process easy and transparent.
             </p>
             <p>
-              With Lexshield, you are not just buying land—you are building a future with a trusted partner.
+              With Lexshield, you are not just buying land you are building a future with a trusted partner.
             </p>
           </div>
           <NuxtLink to="/about" class="btn-primary mt-7">Learn More About Us</NuxtLink>
@@ -92,10 +92,11 @@
             <iframe
               v-if="companyVideoUrl"
               :src="companyVideoUrl"
-              title="About Lexshield Properties"
+              title="Lexshield Properties is committed to curbing fraudulent activities within the real estate sector."
               class="h-full w-full"
               loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen
             />
             <div v-else class="flex h-full flex-col items-center justify-center bg-gradient-to-br from-primary-900 to-primary-700 p-8 text-center text-white">
