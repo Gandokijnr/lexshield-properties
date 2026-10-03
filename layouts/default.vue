@@ -6,6 +6,7 @@
     </main>
     <AppFooter />
     <StickyMobileBar v-if="showStickyBar" />
+    <ClientOnly><EstatePromotion /></ClientOnly>
   </div>
 </template>
 
