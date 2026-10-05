@@ -36,13 +36,13 @@
       </NuxtLink>
 
       <nav class="hidden items-center gap-1 lg:flex">
-        <NavDropdown label="Properties" :items="propertyItems" />
-        <NavDropdown label="Locations" :items="locationItems" />
-        <NuxtLink to="/about" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">About</NuxtLink>
+        <NuxtLink to="/" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Home</NuxtLink>
+        <NavDropdown label="Estates" :items="propertyItems" />
+        <NuxtLink to="/about" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">About us</NuxtLink>
         <NuxtLink to="/testimonials" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Testimonials</NuxtLink>
-        <NuxtLink to="/blog" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Property Guides</NuxtLink>
-        <NuxtLink to="/book-inspection" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Book Inspection</NuxtLink>
-        <NuxtLink to="/contact" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Contact</NuxtLink>
+        <NuxtLink to="/blog" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Properties guide</NuxtLink>
+        <NuxtLink to="/book-inspection" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Book inspection</NuxtLink>
+        <NuxtLink to="/contact" class="rounded-lg px-3 py-2 text-sm font-medium text-neutral-700 hover:bg-neutral-100">Contact us</NuxtLink>
       </nav>
 
       <div class="flex items-center gap-2">
@@ -61,15 +61,15 @@
       <div v-if="mobileOpen" class="border-t border-neutral-200 bg-white lg:hidden">
         <nav class="container-page flex flex-col gap-1 py-4">
           <NuxtLink to="/" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Home</NuxtLink>
-          <NuxtLink to="/properties" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">All Estates</NuxtLink>
+          <NuxtLink to="/properties" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Estates</NuxtLink>
           <NuxtLink to="/properties/mowe-ofada" class="rounded-lg px-3 py-2.5 pl-6 text-sm text-neutral-600 hover:bg-neutral-100" @click="mobileOpen = false">Mowe / Ofada</NuxtLink>
           <NuxtLink to="/properties/ibeju-lekki" class="rounded-lg px-3 py-2.5 pl-6 text-sm text-neutral-600 hover:bg-neutral-100" @click="mobileOpen = false">Ibeju-Lekki</NuxtLink>
           <NuxtLink to="/properties/apete-ibadan" class="rounded-lg px-3 py-2.5 pl-6 text-sm text-neutral-600 hover:bg-neutral-100" @click="mobileOpen = false">Apete, Ibadan</NuxtLink>
-          <NuxtLink to="/about" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">About Us</NuxtLink>
+          <NuxtLink to="/about" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">About us</NuxtLink>
           <NuxtLink to="/testimonials" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Testimonials</NuxtLink>
-          <NuxtLink to="/blog" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Property Guides</NuxtLink>
-          <NuxtLink to="/book-inspection" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Book Inspection</NuxtLink>
-          <NuxtLink to="/contact" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Contact</NuxtLink>
+          <NuxtLink to="/blog" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Properties guide</NuxtLink>
+          <NuxtLink to="/book-inspection" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Book inspection</NuxtLink>
+          <NuxtLink to="/contact" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Contact us</NuxtLink>
           <a :href="whatsappLink" target="_blank" rel="noopener" class="btn-whatsapp mt-2" @click="trackWhatsApp">
             <WhatsAppIcon class="h-4 w-4" />
             <span>Chat on WhatsApp</span>
@@ -106,12 +106,6 @@ const propertyItems = [
   { label: 'Mowe / Ofada', to: '/properties/mowe-ofada' },
   { label: 'Ibeju-Lekki', to: '/properties/ibeju-lekki' },
   { label: 'Apete, Ibadan', to: '/properties/apete-ibadan' },
-]
-
-const locationItems = [
-  { label: 'Mowe-Ofada Ogun state', to: '/properties/mowe-ofada' },
-  { label: 'Ibeju-Lekki', to: '/properties/ibeju-lekki' },
-  { label: 'Ibadan', to: '/properties/ibadan' },
 ]
 
 function trackPhone() {
