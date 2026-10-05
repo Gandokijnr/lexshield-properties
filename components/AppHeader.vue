@@ -60,11 +60,12 @@
     <Transition name="slide-down">
       <div v-if="mobileOpen" class="border-t border-neutral-200 bg-white lg:hidden">
         <nav class="container-page flex flex-col gap-1 py-4">
-          <NuxtLink to="/properties" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">All Properties</NuxtLink>
+          <NuxtLink to="/properties" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Home</NuxtLink>
+          <NuxtLink to="/properties" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">All Estates</NuxtLink>
           <NuxtLink to="/properties/mowe-ofada" class="rounded-lg px-3 py-2.5 pl-6 text-sm text-neutral-600 hover:bg-neutral-100" @click="mobileOpen = false">Mowe / Ofada</NuxtLink>
           <NuxtLink to="/properties/ibeju-lekki" class="rounded-lg px-3 py-2.5 pl-6 text-sm text-neutral-600 hover:bg-neutral-100" @click="mobileOpen = false">Ibeju-Lekki</NuxtLink>
           <NuxtLink to="/properties/apete-ibadan" class="rounded-lg px-3 py-2.5 pl-6 text-sm text-neutral-600 hover:bg-neutral-100" @click="mobileOpen = false">Apete, Ibadan</NuxtLink>
-          <NuxtLink to="/about" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">About</NuxtLink>
+          <NuxtLink to="/about" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">About Us</NuxtLink>
           <NuxtLink to="/testimonials" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Testimonials</NuxtLink>
           <NuxtLink to="/blog" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Property Guides</NuxtLink>
           <NuxtLink to="/book-inspection" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Book Inspection</NuxtLink>
@@ -101,7 +102,7 @@ const mobileOpen = ref(false)
 const scrolled = ref(false)
 
 const propertyItems = [
-  { label: 'All Properties', to: '/properties' },
+  { label: 'All Estates', to: '/properties' },
   { label: 'Mowe / Ofada', to: '/properties/mowe-ofada' },
   { label: 'Ibeju-Lekki', to: '/properties/ibeju-lekki' },
   { label: 'Apete, Ibadan', to: '/properties/apete-ibadan' },
