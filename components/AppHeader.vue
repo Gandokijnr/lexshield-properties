@@ -60,7 +60,7 @@
     <Transition name="slide-down">
       <div v-if="mobileOpen" class="border-t border-neutral-200 bg-white lg:hidden">
         <nav class="container-page flex flex-col gap-1 py-4">
-          <NuxtLink to="/properties" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Home</NuxtLink>
+          <NuxtLink to="/" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">Home</NuxtLink>
           <NuxtLink to="/properties" class="rounded-lg px-3 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100" @click="mobileOpen = false">All Estates</NuxtLink>
           <NuxtLink to="/properties/mowe-ofada" class="rounded-lg px-3 py-2.5 pl-6 text-sm text-neutral-600 hover:bg-neutral-100" @click="mobileOpen = false">Mowe / Ofada</NuxtLink>
           <NuxtLink to="/properties/ibeju-lekki" class="rounded-lg px-3 py-2.5 pl-6 text-sm text-neutral-600 hover:bg-neutral-100" @click="mobileOpen = false">Ibeju-Lekki</NuxtLink>
