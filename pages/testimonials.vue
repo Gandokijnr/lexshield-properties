@@ -9,8 +9,12 @@
     </section>
     <section class="section bg-primary-50">
       <div class="container-page">
-        <div v-if="testimonials.length" class="grid gap-8 lg:grid-cols-2">
-          <article v-for="item in testimonials" :key="item.videoUrl" class="card overflow-hidden">
+        <div class="mb-8">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary-700">Customer stories</p>
+          <h2 class="mt-2 text-3xl text-neutral-900 sm:text-4xl">Testimonials</h2>
+        </div>
+        <div v-if="testimonials.length" class="grid gap-8 md:grid-cols-2">
+          <article v-for="item in testimonials" :key="item.videoUrl" class="card overflow-hidden shadow-lg ring-1 ring-primary-900/5">
             <div class="aspect-video bg-primary-950">
               <iframe :src="item.embedUrl" :title="item.title" class="h-full w-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
             </div>
@@ -24,6 +28,31 @@
         <div v-else class="card mx-auto max-w-2xl p-8 text-center sm:p-12">
           <h2 class="text-2xl text-neutral-900">Customer videos coming soon</h2>
           <p class="mt-4 leading-7 text-neutral-600">We’ll share customer testimonial videos here. In the meantime, our team is available to answer your property questions and help you arrange a site visit.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section bg-white">
+      <div class="container-page">
+        <div class="mb-8">
+          <p class="text-sm font-semibold uppercase tracking-[0.18em] text-primary-700">Explore our estates</p>
+          <h2 class="mt-2 text-3xl text-neutral-900 sm:text-4xl">Promotional videos</h2>
+          <p class="mt-4 max-w-2xl leading-7 text-neutral-600">Take a closer look at our estates, locations and property opportunities.</p>
+        </div>
+        <div v-if="promotionalVideos.length" class="grid gap-8 md:grid-cols-2">
+          <article v-for="item in promotionalVideos" :key="item.videoUrl" class="card overflow-hidden shadow-lg ring-1 ring-primary-900/5">
+            <div class="aspect-video bg-primary-950">
+              <iframe :src="item.embedUrl" :title="item.title" class="h-full w-full" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl text-neutral-900">{{ item.title }}</h3>
+              <p v-if="item.description" class="mt-3 leading-7 text-neutral-600">{{ item.description }}</p>
+              <NuxtLink to="/contact" class="mt-5 inline-block font-semibold text-primary-700">Ask about this estate →</NuxtLink>
+            </div>
+          </article>
+        </div>
+        <div v-else class="card mx-auto max-w-2xl p-8 text-center sm:p-12">
+          <h3 class="text-2xl text-neutral-900">Estate videos coming soon</h3>
+          <p class="mt-4 leading-7 text-neutral-600">Promotional videos featuring our estates and property opportunities will appear here.</p>
         </div>
       </div>
     </section>
@@ -42,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import { videoTestimonials } from '~/data/testimonials'
+import { promotionalVideos as promotionalVideoData, videoTestimonials } from '~/data/testimonials'
 
 function youtubeEmbed(value: string): string | null {
   // Extract only the URL from pasted embed code; never render arbitrary HTML.
@@ -57,6 +86,10 @@ function youtubeEmbed(value: string): string | null {
   } catch { return null }
 }
 const testimonials = videoTestimonials.flatMap(item => {
+  const embedUrl = youtubeEmbed(item.videoUrl)
+  return embedUrl ? [{ ...item, embedUrl }] : []
+})
+const promotionalVideos = promotionalVideoData.flatMap(item => {
   const embedUrl = youtubeEmbed(item.videoUrl)
   return embedUrl ? [{ ...item, embedUrl }] : []
 })

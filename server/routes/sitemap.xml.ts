@@ -19,6 +19,13 @@ export default defineEventHandler(async (event) => {
     '/book-inspection',
     '/privacy',
     '/terms',
+    '/price-of-1-acre-of-land-in-nigeria-2026-comprehensive-guide',
+    '/land-for-sale-in-nigeria-complete-price-guide-best-locations-2025',
+    '/buy-land-in-nigeria-complete-guide-for-foreigners-2025',
+    '/best-place-to-buy-land-in-ibadan',
+    '/land-in-mowe-for-sale-with-c-of-o-hampton-court-estate',
+    '/ibeju-lekki-model-city-plan',
+    '/land-in-mowe-ofada-for-sale-affordable-guide',
   ]
   if (config.public.supabaseUrl && config.public.supabaseAnonKey) {
     const client = createClient(String(config.public.supabaseUrl), String(config.public.supabaseAnonKey))
