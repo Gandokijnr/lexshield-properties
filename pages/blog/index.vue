@@ -14,7 +14,7 @@
           <article class="card overflow-hidden">
             <NuxtLink to="/price-of-1-acre-of-land-in-nigeria-2026-comprehensive-guide">
               <img
-                src="https://www.lexshieldproperties.com/wp-content/uploads/2025/04/419A2164-1-scaled.jpg"
+                src="/emirates-parks-allocation.webp"
                 alt="Land allocation at Emirates Parks and Gardens"
                 class="h-48 w-full object-cover"
                 loading="lazy"
@@ -56,7 +56,7 @@
           <article class="card overflow-hidden">
             <NuxtLink to="/buy-land-in-nigeria-complete-guide-for-foreigners-2025">
               <img
-                src="https://www.lexshieldproperties.com/wp-content/uploads/2025/08/buy-land-in-Nigeria.jpeg"
+                src="/buy-land-in-nigeria.webp"
                 alt="Guide to buying land in Nigeria as an international buyer"
                 class="h-48 w-full object-cover"
                 loading="lazy"
@@ -77,7 +77,7 @@
           <article class="card overflow-hidden">
             <NuxtLink to="/best-place-to-buy-land-in-ibadan">
               <img
-                src="https://www.lexshieldproperties.com/wp-content/uploads/2025/01/how-real-estate-works-image.jpg"
+                src="/ibadan-real-estate-guide.webp"
                 alt="Guide to choosing where to buy land in Ibadan"
                 class="h-48 w-full object-cover"
                 loading="lazy"
@@ -98,7 +98,7 @@
           <article class="card overflow-hidden">
             <NuxtLink to="/land-in-mowe-for-sale-with-c-of-o-hampton-court-estate">
               <img
-                src="https://www.lexshieldproperties.com/wp-content/uploads/2023/10/20240813_115429-scaled.jpg"
+                src="/mowe-land-view.webp"
                 alt="Land in Mowe for sale at Hampton Court Estate"
                 class="h-48 w-full object-cover"
                 loading="lazy"
@@ -119,7 +119,7 @@
           <article class="card overflow-hidden">
             <NuxtLink to="/ibeju-lekki-model-city-plan">
               <img
-                src="https://www.lexshieldproperties.com/wp-content/uploads/2025/02/FIGURE-12.2-DRAFT-FINAL-PLAN_page-0001.webp"
+                src="/ibeju-lekki-model-city-plan.webp"
                 alt="Draft Ibeju-Lekki Model City Plan map"
                 class="h-48 w-full object-cover"
                 loading="lazy"
@@ -140,7 +140,7 @@
           <article class="card overflow-hidden">
             <NuxtLink to="/land-in-mowe-ofada-for-sale-affordable-guide">
               <img
-                src="https://www.lexshieldproperties.com/wp-content/uploads/2025/04/emirate-landscape.jpg"
+                src="/emirate-landscape.webp"
                 alt="Gated estate land in Mowe–Ofada, Ogun State"
                 class="h-48 w-full object-cover"
                 loading="lazy"

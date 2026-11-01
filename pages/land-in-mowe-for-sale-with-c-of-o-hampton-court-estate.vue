@@ -72,7 +72,7 @@
           <h2 class="text-2xl text-neutral-900 sm:text-3xl">Hampton Court Estate: details to confirm</h2>
           <figure class="mt-5 overflow-hidden rounded-xl bg-neutral-100">
             <img
-              src="https://www.lexshieldproperties.com/wp-content/uploads/2023/10/hampton-court-and-estate-240x300.jpeg"
+              src="/hampton-court-estate.webp"
               alt="Hampton Court Estate in Mowe"
               class="mx-auto max-h-[420px] w-full object-contain"
               loading="lazy"
@@ -126,7 +126,7 @@
           <h2 class="text-2xl text-neutral-900 sm:text-3xl">See the location and surrounding area</h2>
           <figure class="mt-5 overflow-hidden rounded-xl bg-neutral-100">
             <img
-              src="https://www.lexshieldproperties.com/wp-content/uploads/2023/10/20240813_115429-scaled.jpg"
+              src="/mowe-land-view.webp"
               alt="View of land in Mowe"
               class="max-h-[520px] w-full object-cover"
               loading="lazy"
@@ -135,7 +135,7 @@
           </figure>
           <figure class="mt-5 overflow-hidden rounded-xl bg-neutral-100">
             <img
-              src="https://www.lexshieldproperties.com/wp-content/uploads/2023/10/20240813_115255-scaled.jpg"
+              src="/mowe-estate-view.webp"
               alt="Estate surroundings in Mowe, Ogun State"
               class="max-h-[520px] w-full object-cover"
               loading="lazy"
@@ -213,7 +213,7 @@ const { buildUrl } = useWhatsApp()
 const whatsappUrl = computed(() => buildUrl())
 
 const slug = 'land-in-mowe-for-sale-with-c-of-o-hampton-court-estate'
-const featuredImage = 'https://www.lexshieldproperties.com/wp-content/uploads/2023/10/20240813_115429-scaled.jpg'
+const featuredImage = '/mowe-land-view.webp'
 const articleTitle = 'Land in Mowe for Sale with C of O: Hampton Court Estate'
 const articleSummary = 'Review Hampton Court Estate in Mowe, Ogun State, compare supplied plot prices and payment options, and learn what to verify before buying.'
 const seoTitle = computed(() => `${articleTitle} | Lexshield Properties`)
@@ -252,7 +252,7 @@ useSeoMeta(() => ({
   description: seoDescription.value,
   ogTitle: seoTitle.value,
   ogDescription: seoDescription.value,
-  ogImage: featuredImage,
+  ogImage: `${config.public.siteUrl.replace(/\/$/, '')}${featuredImage}`,
   ogType: 'article',
   ogUrl: canonical.value,
   twitterCard: 'summary_large_image',
@@ -268,7 +268,7 @@ useHead(() => ({
         '@type': 'Article',
         headline: articleTitle,
         description: seoDescription.value,
-        image: featuredImage,
+        image: `${config.public.siteUrl.replace(/\/$/, '')}${featuredImage}`,
         author: { '@type': 'Organization', name: 'Lexshield Properties Limited' },
         publisher: { '@type': 'Organization', name: 'Lexshield Properties Limited' },
         mainEntityOfPage: canonical.value,

@@ -167,7 +167,8 @@
 const config = useRuntimeConfig()
 
 const slug = 'ibeju-lekki-model-city-plan'
-const featuredImage = 'https://www.lexshieldproperties.com/wp-content/uploads/2025/02/FIGURE-12.2-DRAFT-FINAL-PLAN_page-0001.webp'
+const featuredImage = '/ibeju-lekki-model-city-plan.webp'
+const featuredImageUrl = computed(() => `${config.public.siteUrl.replace(/\/$/, '')}${featuredImage}`)
 const articleTitle = 'Ibeju-Lekki Model City Plan: Draft 2024–2044 and What Buyers Should Know'
 const articleSummary = 'Learn what the draft Ibeju-Lekki Model City Plan covered, review the historical 2025 public consultation dates and find practical checks for property buyers.'
 const seoTitle = computed(() => `${articleTitle} | Lexshield Properties`)
@@ -197,16 +198,16 @@ const faqs = [
   },
 ]
 
-useSeoMeta(() => ({
+useSeoMeta({
   title: seoTitle.value,
   description: seoDescription.value,
   ogTitle: seoTitle.value,
   ogDescription: seoDescription.value,
-  ogImage: featuredImage,
+  ogImage: featuredImageUrl.value,
   ogType: 'article',
   ogUrl: canonical.value,
   twitterCard: 'summary_large_image',
-}))
+})
 
 useHead(() => ({
   link: [{ rel: 'canonical', href: canonical.value }],
@@ -218,7 +219,7 @@ useHead(() => ({
         '@type': 'Article',
         headline: articleTitle,
         description: seoDescription.value,
-        image: featuredImage,
+        image: featuredImageUrl.value,
         datePublished: '2025-02-27',
         dateModified: '2026-11-01',
         author: { '@type': 'Organization', name: 'Lexshield Properties Limited' },

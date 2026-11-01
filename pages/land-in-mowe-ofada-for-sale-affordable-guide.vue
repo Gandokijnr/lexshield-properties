@@ -118,7 +118,7 @@
           <h2 class="text-2xl text-neutral-900 sm:text-3xl">Estate options mentioned in the supplied guide</h2>
           <figure class="mt-5 overflow-hidden rounded-xl bg-neutral-100">
             <img
-              src="https://www.lexshieldproperties.com/wp-content/uploads/2025/04/WhatsApp-Image-2026-02-15-at-12.04.42-PM-300x135.jpeg"
+              src="/mowe-ofada-development.webp"
               alt="Estate development in the Mowe–Ofada area"
               class="max-h-[420px] w-full object-cover"
               loading="lazy"
@@ -226,7 +226,7 @@
 const config = useRuntimeConfig()
 
 const slug = 'land-in-mowe-ofada-for-sale-affordable-guide'
-const featuredImage = 'https://www.lexshieldproperties.com/wp-content/uploads/2025/04/emirate-landscape.jpg'
+const featuredImage = '/emirate-landscape.webp'
 const articleTitle = 'Land in Mowe–Ofada for Sale: Affordable Plot Guide'
 const articleSummary = 'Compare indicative Mowe–Ofada land prices, explore estate options and learn what to verify before buying property in Ogun State.'
 const seoTitle = computed(() => `${articleTitle} | Lexshield Properties`)
@@ -265,7 +265,7 @@ useSeoMeta({
   description: seoDescription.value,
   ogTitle: seoTitle.value,
   ogDescription: seoDescription.value,
-  ogImage: featuredImage,
+  ogImage: `${config.public.siteUrl.replace(/\/$/, '')}${featuredImage}`,
   ogType: 'article',
   ogUrl: canonical.value,
   twitterCard: 'summary_large_image',
@@ -281,7 +281,7 @@ useHead(() => ({
         '@type': 'Article',
         headline: articleTitle,
         description: seoDescription.value,
-        image: featuredImage,
+        image: `${config.public.siteUrl.replace(/\/$/, '')}${featuredImage}`,
         datePublished: '2025-05-30',
         dateModified: '2026-11-01',
         author: { '@type': 'Organization', name: 'Lexshield Properties Limited' },

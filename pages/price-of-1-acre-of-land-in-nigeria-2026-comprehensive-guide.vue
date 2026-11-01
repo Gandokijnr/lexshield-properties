@@ -22,7 +22,7 @@
 
     <figure class="bg-neutral-100">
       <img
-        src="https://www.lexshieldproperties.com/wp-content/uploads/2025/04/419A2164-1-scaled.jpg"
+        src="/emirates-parks-allocation.webp"
         alt="Land allocation at Emirates Parks and Gardens"
         class="mx-auto max-h-[560px] w-full max-w-6xl object-cover"
         fetchpriority="high"
@@ -129,7 +129,7 @@
           <h2 class="text-2xl text-neutral-900 sm:text-3xl">What do acres cost around Lagos?</h2>
           <figure class="mt-5 overflow-hidden rounded-xl bg-neutral-100">
             <img
-              src="https://www.lexshieldproperties.com/wp-content/uploads/2025/08/Country-Roads-300x225.jpeg"
+              src="/country-roads-land.webp"
               alt="Access road through a developing land area in Lagos"
               class="max-h-[420px] w-full object-cover"
               loading="lazy"
@@ -189,7 +189,7 @@
           </ol>
           <figure class="mt-6 overflow-hidden rounded-xl bg-neutral-100">
             <img
-              src="https://www.lexshieldproperties.com/wp-content/uploads/2025/08/Prestige-Park-Drive-Plots-Location-prestige-parkdrive-300x235.jpeg"
+              src="/prestige-park-drive-plots.webp"
               alt="Prestige Park Drive plots and location for land investment"
               class="max-h-[420px] w-full object-cover"
               loading="lazy"
@@ -296,7 +296,7 @@ useSeoMeta({
   description: seoDescription.value,
   ogTitle: seoTitle.value,
   ogDescription: seoDescription.value,
-  ogImage: 'https://www.lexshieldproperties.com/wp-content/uploads/2025/04/419A2164-1-scaled.jpg',
+  ogImage: `${config.public.siteUrl.replace(/\/$/, '')}/emirates-parks-allocation.webp`,
   ogType: 'article',
   ogUrl: canonical.value,
   twitterCard: 'summary_large_image',
@@ -312,7 +312,7 @@ useHead(() => ({
         '@type': 'Article',
         headline: seoTitle.value,
         description: seoDescription.value,
-        image: 'https://www.lexshieldproperties.com/wp-content/uploads/2025/04/419A2164-1-scaled.jpg',
+        image: `${config.public.siteUrl.replace(/\/$/, '')}/emirates-parks-allocation.webp`,
         datePublished: '2026-11-01',
         dateModified: '2026-11-01',
         author: { '@type': 'Organization', name: 'Lexshield Properties Limited' },

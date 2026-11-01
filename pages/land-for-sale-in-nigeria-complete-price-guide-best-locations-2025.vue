@@ -105,7 +105,7 @@
           <h2 class="text-2xl text-neutral-900 sm:text-3xl">Price of an acre of land in Lagos</h2>
           <figure class="mt-5 overflow-hidden rounded-xl bg-neutral-100">
             <img
-              src="https://www.lexshieldproperties.com/wp-content/uploads/2025/08/Country-Roads-300x225.jpeg"
+              src="/country-roads-land.webp"
               alt="Road access through a developing land area"
               class="max-h-[420px] w-full object-cover"
               loading="lazy"
@@ -146,7 +146,7 @@
           </p>
           <figure class="mt-5 overflow-hidden rounded-xl bg-neutral-100">
             <img
-              src="https://www.lexshieldproperties.com/wp-content/uploads/2025/08/Prestige-Park-Drive-Plots-Location-prestige-parkdrive-300x235.jpeg"
+              src="/prestige-park-drive-plots.webp"
               alt="Prestige Park Drive plots and location for land investment"
               class="max-h-[420px] w-full object-cover"
               loading="lazy"

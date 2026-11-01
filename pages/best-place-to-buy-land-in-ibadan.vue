@@ -116,7 +116,7 @@
           <h2 class="text-2xl text-neutral-900 sm:text-3xl">Ibadan locations and corridors to compare</h2>
           <figure class="mt-5 overflow-hidden rounded-xl bg-neutral-100">
             <img
-              src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1000&auto=format&fit=crop"
+              src="/ibadan-landscape.webp"
               alt="Open landscape representing land in Ibadan"
               class="max-h-[420px] w-full object-cover"
               loading="lazy"
@@ -234,7 +234,8 @@ const { buildUrl } = useWhatsApp()
 const whatsappUrl = computed(() => buildUrl())
 
 const slug = 'best-place-to-buy-land-in-ibadan'
-const featuredImage = 'https://www.lexshieldproperties.com/wp-content/uploads/2025/01/how-real-estate-works-image.jpg'
+const featuredImage = '/ibadan-real-estate-guide.webp'
+const featuredImageUrl = computed(() => `${config.public.siteUrl.replace(/\/$/, '')}${featuredImage}`)
 const articleTitle = 'Best Place to Buy Land in Ibadan'
 const articleSummary = 'Compare Ibadan locations, indicative plot prices and practical due-diligence steps to find land that fits your plans.'
 const seoTitle = computed(() => `${articleTitle} (2026 Guide) | Lexshield Properties`)
@@ -273,7 +274,7 @@ useSeoMeta(() => ({
   description: seoDescription.value,
   ogTitle: seoTitle.value,
   ogDescription: seoDescription.value,
-  ogImage: featuredImage,
+  ogImage: featuredImageUrl.value,
   ogType: 'article',
   ogUrl: canonical.value,
   twitterCard: 'summary_large_image',
@@ -289,7 +290,7 @@ useHead(() => ({
         '@type': 'Article',
         headline: articleTitle,
         description: seoDescription.value,
-        image: featuredImage,
+        image: featuredImageUrl.value,
         datePublished: '2026-03-04',
         dateModified: '2026-11-01',
         author: { '@type': 'Organization', name: 'Lexshield Properties Limited' },

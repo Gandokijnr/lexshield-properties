@@ -252,7 +252,8 @@ const { buildUrl } = useWhatsApp()
 const whatsappUrl = computed(() => buildUrl())
 
 const slug = 'buy-land-in-nigeria-complete-guide-for-foreigners-2025'
-const featuredImage = 'https://www.lexshieldproperties.com/wp-content/uploads/2025/08/buy-land-in-Nigeria.jpeg'
+const featuredImage = '/buy-land-in-nigeria.webp'
+const featuredImageUrl = computed(() => `${config.public.siteUrl.replace(/\/$/, '')}${featuredImage}`)
 const articleTitle = 'Buy Land in Nigeria: Complete Guide for Foreigners (2025)'
 const articleSummary = 'Learn how international buyers can approach land purchases in Nigeria, compare locations, budget for costs and verify eligibility and title before committing.'
 const seoTitle = computed(() => `${articleTitle} | Lexshield Properties`)
@@ -291,7 +292,7 @@ useSeoMeta(() => ({
   description: seoDescription.value,
   ogTitle: seoTitle.value,
   ogDescription: seoDescription.value,
-  ogImage: featuredImage,
+  ogImage: featuredImageUrl.value,
   ogType: 'article',
   ogUrl: canonical.value,
   twitterCard: 'summary_large_image',
@@ -307,7 +308,7 @@ useHead(() => ({
         '@type': 'Article',
         headline: articleTitle,
         description: seoDescription.value,
-        image: featuredImage,
+        image: featuredImageUrl.value,
         datePublished: '2025-08-08',
         dateModified: '2026-11-01',
         author: { '@type': 'Organization', name: 'Lexshield Properties Limited' },
